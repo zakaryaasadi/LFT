@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="9.2dp"
+        android:background="@color/ViewLineColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.github.lzyzsd.circleprogress.DonutProgress
+            android:id="@+id/progress_bar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:donut_text_color="@color/twittercolor"
+            app:donut_text_size="10sp"
+            app:donut_finished_color="@color/orange"
+            app:donut_circle_starting_degree="270"
+            android:visibility="gone"
+            custom:donut_progress="25" />
+
+        <ImageView
+            android:id="@+id/file_complete"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/file"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/download"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/downloadicon"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <customfonts.MyTextView_Roboto_Medium
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="2.3sp"
+                android:padding="8dp"
+                android:text="Christina Meyers"
+                android:textColor="@color/twittercolor"
+                android:textSize="13.3sp"
+                android:textStyle="normal" />
+
+            <customfonts.MyTextView_Roboto_Medium
+                android:id="@+id/file_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="2.3sp"
+                android:padding="8dp"
+                android:text="Christina Meyers"
+                android:textColor="@color/gretTxtColor"
+                android:textSize="13.3sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

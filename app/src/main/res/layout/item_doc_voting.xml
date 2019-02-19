@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <customfonts.MyTextView_Roboto_Regular
+        android:id="@+id/head_line"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.7dp"
+        android:lineSpacingExtra="5sp"
+        android:paddingRight="18dp"
+        android:paddingLeft="18dp"
+        android:text="Lorem Ipsum is simply dummy text of the printing
+and typesetting industry."
+        android:textColor="@color/blackTextColor"
+        android:textSize="13.3sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:nestedScrollingEnabled="false" />
+
+</LinearLayout>

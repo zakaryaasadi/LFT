@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginLeft="8.3dp"
+    android:layout_marginRight="8.3dp"
+    android:background="@drawable/rect"
+    android:elevation="5dp"
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/chk_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:button="@drawable/checkbox_background" />
+
+    <TextView
+        android:id="@+id/txt_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:padding="10dp"
+        android:text="Flora"
+        android:textColor="#0d0d0d"
+        android:textSize="13.3dp" />
+
+</LinearLayout>

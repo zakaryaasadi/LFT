@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#a40000</color>
+    <color name="colorPrimaryDark">#a40000</color>
+    <color name="colorAccent">#a40000</color>
+    <color name="white">#ffffff</color>
+    <color name="blackTextColor">#0d0d0d</color>
+    <color name="gretTxtColor">#94aab5</color>
+    <color name="redBg">#cd1214</color>
+    <color name="orange">#fa8e00</color>
+    <color name="red">#cd1214</color>
+    <color name="tabtxt_color">#f09f9f</color>
+    <color name="transparent">#00000000</color>
+    <color name="ViewLineColor">#dedede</color>
+    <color name="hintcolor">#a0a09e</color>
+    <color name="blackbutton">#212121</color>
+    <color name="fbcolor">#3a569d</color>
+    <color name="twittercolor">#06b9df</color>
+    <color name="black_txt_color">#38424a</color>
+    <color name="greytext">#969694</color>
+    <color name="SUCCESS">#2eb772</color>
+    <color name="FAIL">#e23c3c</color>
+</resources>

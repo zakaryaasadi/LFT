@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="shahbasoft.lft">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.wolfsoft.propertyui.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:name=".AppLauncher"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_lft"
+        android:label="LFT"
+        android:roundIcon="@mipmap/icon_lft"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity android:name=".NewsCategoryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NewsDetailActivity" />
+        <activity android:name=".MessageDetailActivity" />
+        <activity android:name=".NewsProfileActivity" />
+        <activity android:name=".NewsActivity" />
+        <activity android:name=".ConfirmAccountActivity" />
+        <activity android:name=".NoteActivity" />
+        <activity android:name=".AddNoteActivity" />
+        <activity android:name=".MessageDetailSentActivity" />
+        <activity android:name=".AddMessageActivity" />
+        <activity android:name=".UserMessageActivity" />
+        <activity android:name=".ExamSubjectsActivity" />
+        <activity android:name=".MarksActivity" />
+        <activity android:name=".ExamTeacherClassesActivity"/>
+        <activity android:name=".ExamTeacherSubjectsActivity"/>
+        <activity android:name=".ExamTeacherTypesActivity"/>
+        <activity android:name=".ExamTeacherStudentActivity"/>
+        <activity android:name=".AddMarkActivity"/>
+        <activity android:name=".DocumentClassesSubjectsActivity"/>
+        <activity android:name=".AddDocumentActivity"/>
+        <activity android:name=".DocumentsActivity"/>
+
+        <meta-data
+            android:name="DATABASE"
+            android:value="DbHelper.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="2" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="Models" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="shahbasoft.lft.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

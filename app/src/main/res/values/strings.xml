@@ -1,0 +1,31 @@
+<resources>
+    <string name="gmail">\@ch_meyers</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="emailid">Your email ID</string>
+    <string name="google_desp">Google AI Defeats Human Go Champions</string>
+    <string name="string1">Air At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, sim ilique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil</string>
+    <string name="string2">“Ever At vero eos et accusamus et iusto odio dig nissimos ducimus qui blanditiis praesentium voluptatum”</string>
+    <string name="string3">Air At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, sim ilique sunt in culpa</string>
+    <string name="string4">Air At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, sim ilique sunt in culpa</string>
+    <string name="string5">Weasel At vero eos et accusamus et iusto odio dignissi mos ducimus qui blanditiis praesentium voluptat…</string>
+    <string name="search_people_places"><![CDATA[Search people & places]]></string>
+    <string name="cvtxt1">Lorem Ipsum is simply dummy text of the printing and type setting industry.</string>
+
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+    <string name="title_activity_news_navigation">NewsNavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="facebook_app_id">288700205266677</string>
+    <string name="fb_login_protocol_scheme">fb288700205266677</string>
+    <string name="title_activity_news_profile">NewsProfileActivity</string>
+    <string name="title_activity_document">DocumentActivity</string>
+
+</resources>

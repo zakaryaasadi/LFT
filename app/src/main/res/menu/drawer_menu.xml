@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_explore"
+            android:icon="@drawable/newspaper"
+            android:title="Explore" />
+        <item
+            android:id="@+id/nav_private"
+            android:icon="@drawable/team"
+            android:title="Private" />
+
+        <item
+            android:id="@+id/nav_add_news"
+            android:icon="@drawable/newspaper_active"
+            android:title="Add news" />
+    </group>
+
+    <item android:title="More Sections">
+        <menu>
+            <item
+                android:id="@+id/nav_subcategories"
+                android:icon="@drawable/sub_cats"
+                android:title="Subcategories" />
+            <item
+                android:id="@+id/nav_add_homework"
+                android:icon="@drawable/homework"
+                android:visible="false"
+                android:title="Add Homework" />
+            <item
+                android:id="@+id/nav_homework"
+                android:icon="@drawable/homework"
+                android:visible="false"
+                android:title="Homework" />
+            <item
+                android:id="@+id/nav_document"
+                android:icon="@drawable/ic_document"
+                android:visible="false"
+                android:title="Document" />
+            <item
+                android:id="@+id/nav_exam"
+                android:icon="@drawable/subject"
+                android:title="Exam" />
+        </menu>
+    </item>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_message"
+                android:icon="@drawable/message"
+                android:title="Message" />
+            <item
+                android:id="@+id/nav_note"
+                android:icon="@drawable/note"
+                android:title="Notes" />
+            <item
+                android:id="@+id/nav_account"
+                android:icon="@drawable/login"
+                android:title="Accout" />
+        </menu>
+    </item>
+
+</menu>
