@@ -13,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.orm.SugarRecord;
 
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ import Controller.EndlessRecyclerViewScrollListener;
 
 import Models.MessageSentClass;
 import Models.MessageSentResult;
+import Models.UserMessageClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,37 +44,41 @@ public class MessageSentFragment extends Fragment {
     private List<MessageSentClass> messages;
 
     View view;
-    private SwipeRefreshLayout swipe;
     private Api api;
     private EndlessRecyclerViewScrollListener scrollListener;
     private int totalMessages;
+    private ImageView bRelaod;
+    private TextView noMessage;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.content_message,container,false);
-        swipe =view.findViewById(R.id.swipe);
-        swipe.getLayoutParams().height = Common.getScreenHeight(getActivity()) + 1000;
-        swipe.setColorSchemeResources(R.color.orange, R.color.twittercolor, R.color.redBg);
-        swipe.setOnRefreshListener(onRefreshListener);
+        view = inflater.inflate(R.layout.content_message, container, false);
+
 
         recyclerView = view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        bRelaod = view.findViewById(R.id.btn_reload);
+
+        noMessage = view.findViewById(R.id.no_note);
+
+
         messages = new ArrayList<>();
         bAdapter = new MessageSentAdapter(getActivity(), messages);
         recyclerView.setAdapter(bAdapter);
 
-        if(Common.getUser() != null)
+        if (Common.getUser() != null)
             fetchDataFromApi(1);
 
 
         scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                if(totalMessages != totalItemsCount){
-                    if(page * 5 > totalItemsCount)
+                if (totalMessages != totalItemsCount) {
+                    if (page * 5 > totalItemsCount)
                         fetchDataFromApi(page);
                     else
                         fetchDataFromApi(page + 1);
@@ -79,21 +87,27 @@ public class MessageSentFragment extends Fragment {
         };
         recyclerView.addOnScrollListener(scrollListener);
 
+
+        bRelaod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickReload();
+            }
+        });
+
         return view;
     }
 
-    private SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener () {
-        @Override
-        public void onRefresh() {
-            messages.clear();
-            bAdapter.notifyDataSetChanged();
-            scrollListener.resetState();
-            fetchDataFromApi(1);
-        }
-    };
+    private void onClickReload() {
+        noMessage.setVisibility(View.GONE);
+        bRelaod.setVisibility(View.GONE);
+        messages.clear();
+        bAdapter.notifyDataSetChanged();
+        scrollListener.resetState();
+        fetchDataFromApi(1);
+    }
 
     private void fetchDataFromApi(int page) {
-        swipe.setRefreshing(true);
         api = DataFromApi.getApi();
 
         Call<MessageSentResult> call = api.MessageSent(Common.getUser().id, page);
@@ -101,7 +115,6 @@ public class MessageSentFragment extends Fragment {
         call.enqueue(new Callback<MessageSentResult>() {
             @Override
             public void onResponse(Call<MessageSentResult> call, Response<MessageSentResult> response) {
-                swipe.setRefreshing(false);
                 MessageSentResult request = response.body();
                 if (request.results != null) {
                     messages.addAll(request.results);
@@ -109,13 +122,14 @@ public class MessageSentFragment extends Fragment {
                     bAdapter.notifyDataSetChanged();
                     runLayoutAnimation();
                     saveToBb();
+                }else{
+                    noMessage.setVisibility(View.VISIBLE);
                 }
             }
 
 
             @Override
             public void onFailure(Call<MessageSentResult> call, Throwable t) {
-                swipe.setRefreshing(false);
                 fetchDataFromDb();
                 bAdapter.notifyDataSetChanged();
                 Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -124,15 +138,16 @@ public class MessageSentFragment extends Fragment {
     }
 
     private void fetchDataFromDb() {
-        if(messages.size() < 5){
+        if (messages.size() < 5) {
             messages.clear();
             messages.addAll(SugarRecord.listAll(MessageSentClass.class, "ID DESC"));
         }
     }
 
     private void saveToBb() {
-        for (MessageSentClass item : messages){
-            item.setFromUser(Common.getUser());
+        for (MessageSentClass item : messages) {
+            String str = new Gson().toJson(Common.getUser());
+            item.setFromUser(new Gson().fromJson(str, UserMessageClass.class));
             item.save();
             SugarRecord.save(item);
         }

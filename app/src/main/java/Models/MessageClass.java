@@ -22,7 +22,7 @@ public class MessageClass {
     private int subjectId;
     private int fromUserId;
     @Ignore
-    private UserClass fromUser;
+    private UserMessageClass fromUser;
     @Ignore
     private GroupClass group;
     @Ignore
@@ -55,9 +55,9 @@ public class MessageClass {
             isRead = SugarRecord.findById(MessageClass.class, id).isRead;
     }
 
-    public UserClass getFromUser() {
+    public UserMessageClass getFromUser() {
         if (fromUser == null)
-            return SugarRecord.findById(UserClass.class, fromUserId);
+            return SugarRecord.findById(UserMessageClass.class, fromUserId);
         return fromUser;
     }
 
@@ -110,7 +110,7 @@ public class MessageClass {
     }
 
 
-    public void setFromUser(UserClass fromUser) {
+    public void setFromUser(UserMessageClass fromUser) {
         this.fromUser = fromUser;
     }
 

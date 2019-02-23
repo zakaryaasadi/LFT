@@ -311,5 +311,4 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         myUserName.setText(Common.getUser().userName);
     }
 
-
 }

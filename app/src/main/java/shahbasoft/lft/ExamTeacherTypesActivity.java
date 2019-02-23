@@ -2,6 +2,7 @@ package shahbasoft.lft;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -39,6 +40,7 @@ public class ExamTeacherTypesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_teacher_types);
 
+
         swipe = findViewById(R.id.swipe);
         swipe.setColorSchemeResources(R.color.orange, R.color.twittercolor, R.color.redBg);
         swipe.setOnRefreshListener(onRefreshListener);
@@ -51,6 +53,17 @@ public class ExamTeacherTypesActivity extends AppCompatActivity {
         bAdapter = new ExamTeacherTypesAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(bAdapter);
         goBack = findViewById(R.id.btn_back);
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ExamTeacherTypesActivity.this, AddExamActivity.class);
+                i.putExtra("subjectId", subjectId);
+                startActivity(i);
+            }
+        });
 
         Intent i = getIntent();
         subjectId = i.getLongExtra("subjectId",0);
@@ -86,8 +99,12 @@ public class ExamTeacherTypesActivity extends AppCompatActivity {
             public void onResponse(Call<ExamsStudentResult> call, Response<ExamsStudentResult> response) {
                 swipe.setRefreshing(false);
                 ExamsStudentResult examSubjectRes = response.body();
-                list.addAll(examSubjectRes.results);
-                bAdapter.notifyDataSetChanged();
+                if(examSubjectRes.results != null){
+                    list.addAll(examSubjectRes.results);
+                    bAdapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(getApplicationContext(), "There are not exams", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

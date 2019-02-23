@@ -68,6 +68,8 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="Models" />
+
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="215dp"
-        android:background="@drawable/email"
         android:layout_marginTop="45dp"
+        android:background="@drawable/email"
         android:orientation="vertical">
 
         <ImageView
@@ -37,39 +37,22 @@
         app:tabTextColor="@color/tabtxt_color" />
 
 
-    <android.support.v4.widget.NestedScrollView
+    <!--Viewpager used-->
+    <xyz.santeri.wvp.WrappingViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="45dp"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
-
-
-            <!--Viewpager used-->
-            <xyz.santeri.wvp.WrappingViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
-                android:clipToPadding="false"
-                android:paddingBottom="20dp">
-
-            </xyz.santeri.wvp.WrappingViewPager>
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        android:clipToPadding="false"
+        android:paddingBottom="20dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 

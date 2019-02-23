@@ -35,6 +35,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.snatik.storage.Storage;
+
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
@@ -42,6 +44,7 @@ import org.angmarch.views.NiceSpinner;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,6 +65,7 @@ import Models.SubjectClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import shahbasoft.lft.AppLauncher;
 import shahbasoft.lft.R;
 
 import static android.app.Activity.RESULT_OK;
@@ -351,11 +355,22 @@ public class AddHomeworkActivity extends Fragment {
     private void addFile(String path) {
         AttachmentClass attach = new AttachmentClass();
         File src = new File(path);
+
         int size = (int) src.length();
         attach.name = path.split("/")[path.split("/").length - 1];
-        attach.path = path;
         attach.size = String.valueOf(size / 1024);
+
+
+        attach.path = AppLauncher.DIR_FILES + File.separator + attach.name;
         attachs.add(attach);
+
+        Storage storage = new Storage(getContext());
+        storage.copy(path, attach.path);
+
+
+
+
+
         bAdapterFile.notifyDataSetChanged();
     }
 

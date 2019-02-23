@@ -9,7 +9,6 @@ public class AttachmentClass {
     public String name;
     public String path;
     private int type;
-    public String attach;
     public String size;
     public int isUploaded = 0;
     public AttachmentType getType() {

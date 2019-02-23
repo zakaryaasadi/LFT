@@ -168,7 +168,11 @@ public class MessageFileAdapter extends RecyclerView.Adapter<MessageFileAdapter.
             @Override
             public void onClick(View v) {
                 String path = AppLauncher.DIR_FILES + File.separator + file.name;
-                FileProcessing.openFileDialog(context, path);
+                File f = new File(path);
+                if(f.exists())
+                    FileProcessing.openFileDialog(context, path);
+                else
+                    Toast.makeText(context, "File access failed", Toast.LENGTH_SHORT).show();
             }
         });
     }

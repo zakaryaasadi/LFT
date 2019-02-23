@@ -1,17 +1,27 @@
 package Adapter;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.List;
 
 import Models.AttachmentClass;
 import Utils.FileProcessing;
+import shahbasoft.lft.AppLauncher;
+import shahbasoft.lft.MessageDetailActivity;
+import shahbasoft.lft.MessageDetailSentActivity;
 import shahbasoft.lft.R;
 
 public class MessageFileSentAdapter extends RecyclerView.Adapter<MessageFileSentAdapter.MyViewHolder> {
@@ -59,9 +69,15 @@ public class MessageFileSentAdapter extends RecyclerView.Adapter<MessageFileSent
         holder.fileSize.setText(FileProcessing.getFileSize(file.size));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                FileProcessing.openFileDialog(context, file.path);
+                String path = AppLauncher.DIR_FILES + File.separator + file.name;
+                File f = new File(path);
+                if (f.exists())
+                    FileProcessing.openFileDialog(context, path);
+                else
+                    Toast.makeText(context, "File access failed", Toast.LENGTH_SHORT).show();
             }
         });
     }

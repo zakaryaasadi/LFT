@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="68dp"-->
+    <!--android:layout_marginLeft="9dp"-->
+    <!--android:layout_marginRight="9dp"-->
+    <!--android:layout_marginTop="14dp">-->
+
+    <!---->
+    <!--</android.support.v7.widget.CardView>-->
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="14dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingTop="3dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:src="@drawable/profile" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical">
+
+                    <customfonts.MyTextView_Roboto_Medium
+                        android:id="@+id/person_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:lineSpacingExtra="2.3sp"
+                        android:text="Christina Meyers"
+                        android:textColor="@color/black_txt_color"
+                        android:textSize="13.3sp"
+                        android:textStyle="normal" />
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/spr_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Choose a exam type"
+                        android:maxLength="15"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:textColor="@color/black_txt_color"
+                        android:textColorHint="@color/hintcolor" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="9.2dp"
+                android:background="@color/ViewLineColor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:paddingLeft="1dp">
+
+
+                <customfonts.EditText_Roboto_Regular
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/transparent"
+                    android:fontFamily="sans-serif"
+                    android:gravity="top"
+                    android:hint="Exam Name"
+                    android:lineSpacingExtra="2.7sp"
+                    android:padding="3dp"
+                    android:textColor="#a0a09e"
+                    android:textColorHint="@color/hintcolor"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+
+                <customfonts.EditText_Roboto_Regular
+                    android:id="@+id/max"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/transparent"
+                    android:fontFamily="sans-serif"
+                    android:gravity="top"
+                    android:hint="Exam Max"
+                    android:inputType="number"
+                    android:lineSpacingExtra="2.7sp"
+                    android:padding="3dp"
+                    android:textColor="#a0a09e"
+                    android:textColorHint="@color/hintcolor"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <customfonts.EditText_Roboto_Regular
+                    android:id="@+id/pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/transparent"
+                    android:fontFamily="sans-serif"
+                    android:gravity="top"
+                    android:hint="Exam Pass"
+                    android:inputType="number"
+                    android:lineSpacingExtra="2.7sp"
+                    android:padding="3dp"
+                    android:textColor="#a0a09e"
+                    android:textColorHint="@color/hintcolor"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/transparent"
+                    android:fontFamily="sans-serif"
+                    android:gravity="top"
+                    android:hint="Exam date"
+                    android:inputType="date"
+                    android:enabled="false"
+                    android:lineSpacingExtra="2.7sp"
+                    android:padding="3dp"
+                    android:textColor="#a0a09e"
+                    android:textColorHint="@color/hintcolor"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="9.2dp"
+                android:background="@color/ViewLineColor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="1dp">
+
+
+                <customfonts.MyTextView_Roboto_Medium
+                    android:id="@+id/btn_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15.5dp"
+                    android:layout_marginRight="15.5dp"
+                    android:background="@drawable/black_rect"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Add Exam"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

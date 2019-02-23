@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orm.SugarRecord;
@@ -39,23 +41,24 @@ public class MessageInboxFragment extends Fragment {
     private List<MessageClass> messages;
 
     View view;
-    private SwipeRefreshLayout swipe;
     private Api api;
     private EndlessRecyclerViewScrollListener scrollListener;
     private int totalMessages;
+    private ImageView bRelaod;
+    private TextView noMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.content_message,container,false);
-        swipe =view.findViewById(R.id.swipe);
-        swipe.getLayoutParams().height = Common.getScreenHeight(getActivity()) + 1000;
-        swipe.setColorSchemeResources(R.color.orange, R.color.twittercolor, R.color.redBg);
-        swipe.setOnRefreshListener(onRefreshListener);
 
         recyclerView = view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        bRelaod = view.findViewById(R.id.btn_reload);
+
+        noMessage = view.findViewById(R.id.no_note);
 
         messages = new ArrayList<>();
         bAdapter = new MessageAdapter(getActivity(), messages);
@@ -78,21 +81,27 @@ public class MessageInboxFragment extends Fragment {
         };
         recyclerView.addOnScrollListener(scrollListener);
 
+
+        bRelaod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickReload();
+            }
+        });
+
         return view;
     }
 
-    private SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener () {
-        @Override
-        public void onRefresh() {
-            messages.clear();
-            bAdapter.notifyDataSetChanged();
-            scrollListener.resetState();
-            fetchDataFromApi(1);
-        }
-    };
+    private void onClickReload() {
+        noMessage.setVisibility(View.GONE);
+        bRelaod.setVisibility(View.GONE);
+        messages.clear();
+        bAdapter.notifyDataSetChanged();
+        scrollListener.resetState();
+        fetchDataFromApi(1);
+    }
 
     private void fetchDataFromApi(int page) {
-        swipe.setRefreshing(true);
         api = DataFromApi.getApi();
 
         Call<MessageResult> call = api.Message(Common.getUser().id, page);
@@ -100,21 +109,21 @@ public class MessageInboxFragment extends Fragment {
         call.enqueue(new Callback<MessageResult>() {
             @Override
             public void onResponse(Call<MessageResult> call, Response<MessageResult> response) {
-                swipe.setRefreshing(false);
                 MessageResult request = response.body();
                 if (request.results != null) {
                     messages.addAll(request.results);
                     bAdapter.notifyDataSetChanged();
                     totalMessages = request.numResult;
-                    runLayoutAnimation();
                     saveToBb();
+                }else{
+                    noMessage.setVisibility(View.VISIBLE);
                 }
             }
 
 
             @Override
             public void onFailure(Call<MessageResult> call, Throwable t) {
-                swipe.setRefreshing(false);
+                bRelaod.setVisibility(View.VISIBLE);
                 fetchDataFromDb();
                 bAdapter.notifyDataSetChanged();
                 Toast.makeText(getActivity().getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -134,16 +143,6 @@ public class MessageInboxFragment extends Fragment {
             item.save();
             SugarRecord.save(item);
         }
-    }
-
-    private void runLayoutAnimation() {
-        final Context context = recyclerView.getContext();
-        final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_slide_left);
-
-        recyclerView.setLayoutAnimation(controller);
-        recyclerView.getAdapter().notifyDataSetChanged();
-        recyclerView.scheduleLayoutAnimation();
     }
 
     @Override

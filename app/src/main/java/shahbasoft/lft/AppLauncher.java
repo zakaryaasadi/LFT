@@ -73,6 +73,8 @@ public class AppLauncher extends Application  {
     }
 
 
+
+
     public static String getApplicationName(Context context) {
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         CharSequence name = applicationInfo.loadLabel(context.getPackageManager());

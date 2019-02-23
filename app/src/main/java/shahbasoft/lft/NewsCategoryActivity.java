@@ -1,11 +1,15 @@
 package shahbasoft.lft;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.PermissionChecker;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -48,6 +52,7 @@ public class NewsCategoryActivity extends AppCompatActivity {
     TextView slogen;
     ImageView logo;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,11 @@ public class NewsCategoryActivity extends AppCompatActivity {
 
         slogen.setText(AppLauncher.getApplicationName(getApplicationContext()));
         logo.setImageDrawable(AppLauncher.getApplicationIcon(getApplicationContext()));
+
+
+        if (PermissionChecker.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1);
+        }
 
     }
 

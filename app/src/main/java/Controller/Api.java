@@ -3,6 +3,7 @@ package Controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Date;
 import java.util.List;
 
 import Models.AddMessage;
@@ -13,6 +14,7 @@ import Models.DocumentResult;
 import Models.EventResult;
 import Models.ExamStudentsDontMarkResult;
 import Models.ExamSubjectResult;
+import Models.ExamTypesResult;
 import Models.ExamsStudentResult;
 import Models.MessageResult;
 import Models.MessageSentResult;
@@ -143,9 +145,16 @@ public interface Api {
     @GET("exam/getexams")
     Call<ExamsStudentResult> GetExamsStudents(@Query("subject_id") long subjectId);
 
+    @GET("exam/getexamtype")
+    Call<ExamTypesResult> GetExamTypes(@Query("subject_id") long subjectId);
+
     @GET("exam/getstudents")
     Call<ExamStudentsDontMarkResult> GetStudentsDontMark(@Query("exam_id") long examId);
 
     @GET("exam/addmark")
     Call<Result> AddMark(@Query("student_id") long studentId, @Query("exam_id") long examId, @Query("absent") int absent, @Query("mark") double mark);
+
+    @GET("exam/addexam")
+    Call<Result> AddExam(@Query("user_id") long userId, @Query("subject_id") long subjectId, @Query("exam_type_id") long examTypeId, @Query("max") int max,
+                         @Query("min") int min, @Query("exam_name") String name, @Query("date") Date date);
 }

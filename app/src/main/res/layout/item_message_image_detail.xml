@@ -32,14 +32,14 @@
                     android:visibility="gone"
                     android:src="@drawable/downloadicon" />
 
-                <com.developers.coolprogressviews.CircleWithArcProgress
-                    android:id="@+id/progress_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:radius1="30dp"
-                    app:circleColor="@android:color/holo_orange_dark"
-                    app:arcColor="@android:color/holo_orange_light"
-                    android:visibility="gone"/>
+                <!--<com.developers.coolprogressviews.CircleWithArcProgress-->
+                    <!--android:id="@+id/progress_bar"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--app:radius1="30dp"-->
+                    <!--app:circleColor="@android:color/holo_orange_dark"-->
+                    <!--app:arcColor="@android:color/holo_orange_light"-->
+                    <!--android:visibility="gone"/>-->
             </FrameLayout>
         </RelativeLayout>
 

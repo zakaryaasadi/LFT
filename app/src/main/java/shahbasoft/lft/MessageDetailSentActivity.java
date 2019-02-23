@@ -1,11 +1,14 @@
 package shahbasoft.lft;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -107,6 +110,4 @@ public class MessageDetailSentActivity extends AppCompatActivity {
         bAdapterFile.notifyDataSetChanged();
 
     }
-
-
 }
