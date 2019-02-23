@@ -55,6 +55,7 @@
         <activity android:name=".DocumentClassesSubjectsActivity"/>
         <activity android:name=".AddDocumentActivity"/>
         <activity android:name=".DocumentsActivity"/>
+        <activity android:name=".AddExamActivity"/>
 
         <meta-data
             android:name="DATABASE"

@@ -35,8 +35,8 @@ import retrofit2.http.Query;
 
 public interface Api {
     //    String HOST = "http://212.11.218.161:85/api/";
-//    String HOST = "http://212.11.196.194/api/";
-    String HOST = "http://192.168.1.135/api/";
+    String HOST = "http://212.11.196.194/api/";
+//    String HOST = "http://192.168.1.135/api/";
     int schoolId = 1104;
 
     Gson gson = new GsonBuilder()

@@ -11,45 +11,37 @@
         android:paddingLeft="18dp"
         android:id="@+id/no_note"
         android:lineSpacingExtra="5sp"
-        android:gravity="center"
         android:visibility="gone"
         android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="16.7dp"
         android:textColor="@color/blackTextColor"
-        android:text="No Messages."/>
+        android:text="No Messages."
+        android:layout_marginBottom="50dp"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:id="@+id/btn_reload"
+        android:src="@drawable/reload"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16.7dp"
+        android:layout_marginBottom="50dp"/>
 
 
 
-    <android.support.v4.widget.NestedScrollView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/swipe"
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingTop="150dp"/>
-                </FrameLayout>
-            </android.support.v4.widget.SwipeRefreshLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
+        android:paddingTop="150dp"/>
 
 
 

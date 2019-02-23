@@ -17,7 +17,6 @@ import java.util.List;
 
 import Models.NoteStudentClass;
 import Models.UserClass;
-import shahbasoft.lft.NewsDetailActivity;
 import shahbasoft.lft.NoteActivity;
 import shahbasoft.lft.R;
 

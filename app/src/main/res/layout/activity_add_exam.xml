@@ -145,7 +145,7 @@
                     android:textSize="15sp"
                     android:textStyle="normal" />
 
-                <TextView
+                <customfonts.EditText_Roboto_Regular
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,7 +156,6 @@
                     android:gravity="top"
                     android:hint="Exam date"
                     android:inputType="date"
-                    android:enabled="false"
                     android:lineSpacingExtra="2.7sp"
                     android:padding="3dp"
                     android:textColor="#a0a09e"

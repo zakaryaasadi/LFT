@@ -11,14 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import org.angmarch.views.NiceSpinner;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,9 +28,11 @@ import Models.ExamTypesResult;
 import Models.Result;
 import Models.SubjectClass;
 import Utils.ImageProcessing;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class AddExamActivity extends AppCompatActivity {
 
@@ -47,7 +47,7 @@ public class AddExamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_mark);
+        setContentView(R.layout.activity_add_exam);
 
         Intent i = getIntent();
         subjectId = i.getLongExtra("subjectId", 0);
@@ -67,12 +67,12 @@ public class AddExamActivity extends AppCompatActivity {
         }
 
 
-        date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datepicker();
-            }
-        });
+//        date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                datepicker();
+//            }
+//        });
 
         addExam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,26 +116,28 @@ public class AddExamActivity extends AppCompatActivity {
     }
 
 
-    private void datepicker() {
-        Calendar calendar = Calendar.getInstance();
-
+//    private void datepicker() {
+//        Calendar calendar = Calendar.getInstance();
+//
 //        Calendar now = Calendar.getInstance();
-//        DatePickerDialog dpd = DatePickerDialog.newInstance(
-//                new DatePickerDialog.OnDateSetListener() {
+//        new SpinnerDatePickerDialogBuilder()
+//                .context(AddExamActivity.this)
+//                .callback(new DatePickerDialog.OnDateSetListener() {
 //                    @Override
-//                    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+//                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 //                        String d = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
 //                        date.setText(d);
 //                    }
-//                },
-//                now.get(Calendar.YEAR), // Initial year selection
-//                now.get(Calendar.MONTH), // Initial month selection
-//                now.get(Calendar.DAY_OF_MONTH) // Inital day selection
-//        );
-//
-//        dpd.setMinDate(calendar);
-//        dpd.show(getSupportFragmentManager(), "Datepickerdialog");
-    }
+//                })
+//                .spinnerTheme(R.style.NumberPickerStyle)
+//                .showTitle(true)
+//                .showDaySpinner(true)
+//                .defaultDate(2017, 0, 1)
+//                .maxDate(2020, 0, 1)
+//                .minDate(2000, 0, 1)
+//                .build()
+//                .show();
+//    }
 
     private void submit() {
 
@@ -160,7 +162,7 @@ public class AddExamActivity extends AppCompatActivity {
             else {
                 Api api = DataFromApi.getApi();
                 long eTypeId = list.get(sprCategory.getSelectedIndex()).id;
-                DateFormat format = new SimpleDateFormat("MMMM d, yyyy");
+                DateFormat format = new SimpleDateFormat("dd/mm/yyyy");
                 try {
                     Date d = format.parse(eDate);
                     Call<Result> call = api.AddExam(Common.getUser().id, subjectId, eTypeId, eMax, ePass, eName, d);
