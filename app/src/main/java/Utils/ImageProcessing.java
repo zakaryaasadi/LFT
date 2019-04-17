@@ -17,21 +17,33 @@ public class ImageProcessing {
 
     public static String bitmapToBase64(Bitmap bitmap){
         int maxPixelImage = 1000;
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        if(bitmap.getWidth() > bitmap.getHeight()){
-            if(bitmap.getWidth() < maxPixelImage)
-                maxPixelImage = bitmap.getWidth();
-            float percent = bitmap.getHeight() / Float.valueOf(bitmap.getWidth());
-            bitmap = Bitmap.createScaledBitmap(bitmap, maxPixelImage, Math.round(maxPixelImage * percent), false);
-        }else{
-            if(bitmap.getHeight() < maxPixelImage)
-                maxPixelImage = bitmap.getHeight();
-            float percent = bitmap.getWidth() / Float.valueOf(bitmap.getHeight());
-            bitmap = Bitmap.createScaledBitmap(bitmap,Math.round(maxPixelImage * percent), maxPixelImage, false);
-        }
-        bitmap.compress(Bitmap.CompressFormat.JPEG,      80, baos);
-        byte [] b=baos.toByteArray();
+        byte [] b = resizeToBytesArray(bitmap, maxPixelImage);
         String temp= Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
+    }
+
+
+
+    public static Bitmap resizeToBitmap(Bitmap b, int maxPixelImage){
+        if(b.getWidth() > b.getHeight()){
+            if(b.getWidth() < maxPixelImage)
+                maxPixelImage = b.getWidth();
+            float percent = b.getHeight() / Float.valueOf(b.getWidth());
+            b = Bitmap.createScaledBitmap(b, maxPixelImage, Math.round(maxPixelImage * percent), false);
+        }else{
+            if(b.getHeight() < maxPixelImage)
+                maxPixelImage = b.getHeight();
+            float percent = b.getWidth() / Float.valueOf(b.getHeight());
+            b = Bitmap.createScaledBitmap(b,Math.round(maxPixelImage * percent), maxPixelImage, false);
+        }
+        return b;
+    }
+
+
+    public static byte[] resizeToBytesArray(Bitmap b, int maxPixelImage){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        b = resizeToBitmap(b, maxPixelImage);
+        b.compress(Bitmap.CompressFormat.JPEG,      80, baos);
+        return baos.toByteArray();
     }
 }

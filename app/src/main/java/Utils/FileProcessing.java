@@ -1,34 +1,38 @@
 package Utils;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
+import android.util.Base64;
+
+import com.shahbaapp.lft.AppLauncher;
+import com.snatik.storage.Storage;
+
 import java.io.File;
 
 
-public class FileProcessing {
+public class FileProcessing{
 
-    private static final String FILE_PROVIDER = "shahbasoft.lft.fileprovider";
+
+    public static final String FILE_PROVIDER = AppLauncher.context.getPackageName() + ".fileprovider";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void openFileDialog(Context context, String path) {
+    public static void openFileDialog(String path) {
 
         if (!new File(path).exists())
             return;
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setType("*/*");
-        intent.setData(getFileUri(context, path));
+        intent.setData(getFileUri(path));
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        context.startActivity(Intent.createChooser(intent, "Choose an app"));
+        AppLauncher.context.startActivity(Intent.createChooser(intent, "Choose an app"));
     }
 
-    public static void shareFile(Context context, String path, String title, String text) {
+    public static void shareFile(String path, String title, String text) {
         if (!new File(path).exists())
             return;
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -36,16 +40,16 @@ public class FileProcessing {
         intent.putExtra(Intent.EXTRA_TITLE, title);
         intent.putExtra(Intent.EXTRA_TEXT, text);
         if (path != null || path == "")
-            intent.putExtra(Intent.EXTRA_STREAM, getFileUri(context, path));
+            intent.putExtra(Intent.EXTRA_STREAM, getFileUri(path));
         intent.setType("*/*");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        context.startActivity(Intent.createChooser(intent, "Choose an app"));
+        AppLauncher.context.startActivity(Intent.createChooser(intent, "Choose an app"));
 
     }
 
-    public static Uri getFileUri(Context context, String path) {
+    public static Uri getFileUri(String path) {
         File f = new File(path);
-        Uri uri = FileProvider.getUriForFile(context, FILE_PROVIDER, f);
+        Uri uri = FileProvider.getUriForFile(AppLauncher.context, FILE_PROVIDER, f);
         return uri;
     }
 
@@ -65,6 +69,16 @@ public class FileProcessing {
         } catch (Exception e) {
             return size;
         }
+    }
+
+
+
+    public static String saveImageInCache(String image) {
+
+        Storage storage = new Storage(AppLauncher.context);
+        String path = storage.getInternalCacheDirectory() + "/image.jpg";
+        storage.createFile(path, Base64.decode(image, Base64.DEFAULT));
+        return path;
     }
 
 }

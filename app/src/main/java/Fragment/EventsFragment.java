@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.orm.SugarRecord;
+import com.shahbaapp.lft.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,6 @@ import Models.EventResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
 
 public class EventsFragment extends Fragment {
 

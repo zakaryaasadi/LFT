@@ -1,18 +1,14 @@
 package Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +22,13 @@ import Adapter.MessageAdapter;
 import Controller.Api;
 import Controller.Common;
 import Controller.DataFromApi;
-import Controller.EndlessRecyclerViewScrollListener;
+import Utils.EndlessRecyclerViewScrollListener;
 import Models.MessageClass;
 import Models.MessageResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class MessageInboxFragment extends Fragment {
 

@@ -9,31 +9,25 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-
 import com.orm.SugarRecord;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Adapter.NewsRecycleAdapter;
 import Controller.Common;
 import Controller.Api;
 import Controller.DataFromApi;
-import Controller.EndlessRecyclerViewScrollListener;
+import Utils.EndlessRecyclerViewScrollListener;
 import Models.NewsClass;
 import Models.NewsResult;
-import Models.SubcategoryClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class WhtsNewFragment extends Fragment {
 
@@ -52,6 +46,7 @@ public class WhtsNewFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private EndlessRecyclerViewScrollListener scrollListener;
     int totalNews = 0;
+    public long subcategoryId;
 
 
     @Override
@@ -67,11 +62,11 @@ public class WhtsNewFragment extends Fragment {
         swipe.setOnRefreshListener(onRefreshListener);
 
 
-        recyclerView = view.findViewById(R.id.normal_recyclerview);
+
+        recyclerView = view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         bAdapter = new NewsRecycleAdapter(getActivity(), newsList);
         recyclerView.setAdapter(bAdapter);
 
@@ -97,33 +92,30 @@ public class WhtsNewFragment extends Fragment {
 
 
     private void fetchDataFromApi(final int page) {
-        for (final SubcategoryClass item : Common.categoryClass.getSubcategories())
-            if (item.isSelected()) {
-                Call<NewsResult> call = api.News(item.getId(), page);
+        Call<NewsResult> call = api.News(subcategoryId, page);
 
-                call.enqueue(new Callback<NewsResult>() {
-                    @Override
-                    public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
-                        swipe.setRefreshing(false);
-                        NewsResult news = response.body();
-                        if (news.results != null) {
-                            addNews(page, news.results);
-                            bAdapter.notifyDataSetChanged();
+        call.enqueue(new Callback<NewsResult>() {
+            @Override
+            public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
+                swipe.setRefreshing(false);
+                NewsResult news = response.body();
+                if (news.results != null) {
+                    addNews(page, news.results);
+                    bAdapter.notifyDataSetChanged();
 //                            runLayoutAnimation();
-                            totalNews = news.numResult;
-                            saveToDb(item.getId());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<NewsResult> call, Throwable t) {
-                        swipe.setRefreshing(false);
-                        fetchDataFromDb(item.getId());
-                        bAdapter.notifyDataSetChanged();
-//                        runLayoutAnimation();
-                    }
-                });
+                    totalNews = news.numResult;
+                    saveToDb(WhtsNewFragment.this.subcategoryId);
+                }
             }
+
+            @Override
+            public void onFailure(Call<NewsResult> call, Throwable t) {
+                swipe.setRefreshing(false);
+                fetchDataFromDb(WhtsNewFragment.this.subcategoryId);
+                bAdapter.notifyDataSetChanged();
+//                        runLayoutAnimation();
+            }
+        });
     }
 
 

@@ -1,7 +1,6 @@
 package Activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -9,23 +8,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.FileProvider;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.ScrollingTabContainerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -44,7 +39,6 @@ import org.angmarch.views.NiceSpinner;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,21 +46,20 @@ import Adapter.AddMessageFileAdapter;
 import Controller.Api;
 import Controller.Common;
 import Controller.DataFromApi;
-import Controller.OpenFileDialog;
-import Models.AddHomework;
+import Utils.FileProcessing;
+import Utils.OpenFileDialog;
+import Fragment.WhtsNewFragment;
 import Models.AttachmentClass;
 import Models.ClassSubjectClass;
-import Models.ClassSubjectResult;
 import Models.MessageClass;
 import Models.MessageResult;
 import Models.NewsClass;
-import Models.SubcategoryClass;
 import Models.SubjectClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.AppLauncher;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.AppLauncher;
+import  com.shahbaapp.lft.R;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -122,7 +115,7 @@ public class AddHomeworkActivity extends Fragment {
 
         intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File f = new File(getContext().getExternalCacheDir(), "temp.jpg");
-        Uri photoURI = FileProvider.getUriForFile(getContext(), "shahbasoft.lft.fileprovider", f);
+        Uri photoURI = FileProcessing.getFileUri(f.getPath());
         intentCamera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
@@ -231,7 +224,7 @@ public class AddHomeworkActivity extends Fragment {
                                 Toast.makeText(getContext(), result.status, Toast.LENGTH_SHORT).show();
                                 uploadMultipart(result.results.get(0));
                                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                        new ExploreActivity()).commit();
+                                        new WhtsNewFragment()).commit();
                             } else
                                 Toast.makeText(getContext(), result.status, Toast.LENGTH_SHORT).show();
                         }

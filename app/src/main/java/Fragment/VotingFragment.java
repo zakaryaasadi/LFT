@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.orm.SugarRecord;
@@ -25,13 +24,13 @@ import Adapter.VotingRecycleAdapter;
 import Controller.Common;
 import Controller.Api;
 import Controller.DataFromApi;
-import Controller.EndlessRecyclerViewScrollListener;
+import Utils.EndlessRecyclerViewScrollListener;
 import Models.VotingClass;
 import Models.VotingResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class VotingFragment extends Fragment {
 

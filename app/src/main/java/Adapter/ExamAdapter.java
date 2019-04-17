@@ -6,15 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import Models.ExamClass;
-import Models.ExamSubjectClass;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.MyViewHolder> {
 

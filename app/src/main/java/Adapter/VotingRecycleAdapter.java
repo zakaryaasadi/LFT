@@ -21,9 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 import Models.ChoiceClass;
-import Controller.CustomDate;
+import Utils.CustomDate;
 import Models.VotingClass;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class VotingRecycleAdapter extends RecyclerView.Adapter<VotingRecycleAdapter.MyViewHolder> {
 

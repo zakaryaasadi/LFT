@@ -12,8 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import Models.SubjectClass;
-import shahbasoft.lft.ExamTeacherTypesActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.ExamTeacherTypesActivity;
+import com.shahbaapp.lft.R;
 
 public class ExamTeacherSubjectsAdapter extends RecyclerView.Adapter<ExamTeacherSubjectsAdapter.MyViewHolder> {
 

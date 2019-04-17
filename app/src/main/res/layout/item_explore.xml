@@ -83,6 +83,7 @@
             android:text="Lorem Ipsum is simply dummy text of the printing
 and typesetting industry."
             android:textColor="@color/blackTextColor"
+            android:textDirection="anyRtl"
             android:textSize="13.3sp" />
 
         <FrameLayout

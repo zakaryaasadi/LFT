@@ -1,56 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/sub_cats"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10.3dp"
-    android:layout_marginLeft="7dp"
-    android:background="@color/redBg">
+    android:paddingTop="15dp"
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="106.3dp"
-            android:layout_height="106.3dp"
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/image"
             android:src="@drawable/image"
-            app:civ_border_color="#00000000"
-            app:civ_border_width="2dp" />
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="5dip"
+            android:layout_marginRight="8.5dp"
+            app:riv_oval="false" />
 
-
-        <ImageView
-            android:id="@+id/tick"
+        <customfonts.MyTextView_Roboto_Medium
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="75dp"
-            android:src="@drawable/verified"
-            android:visibility="gone" />
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <customfonts.MyTextView_Roboto_Medium
-                android:id="@+id/txt"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Lifestyle"
-                android:maxLength="15"
-                android:textColor="@color/white"
-                android:textSize="13.3sp" />
-        </FrameLayout>
+            android:textSize="11.7sp"
+            android:text="Portrate"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="11dp"
+            android:maxLength="12"
+            android:layout_gravity="bottom"/>
 
 
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="106dp"
-            android:layout_height="106dp"
-            android:background="@drawable/line_circle"
-            android:orientation="vertical"
-            android:visibility="gone" />
     </FrameLayout>
-</RelativeLayout>
+
+</LinearLayout>

@@ -17,9 +17,8 @@ import java.util.List;
 
 import Models.CategoryClass;
 import Controller.Common;
-import Models.SubcategoryClass;
-import shahbasoft.lft.NewsActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.NewsActivity;
+import com.shahbaapp.lft.R;
 
 public class NewsCategoryAdapter extends RecyclerView.Adapter<NewsCategoryAdapter.MyViewHolder>{
 
@@ -85,23 +84,11 @@ public class NewsCategoryAdapter extends RecyclerView.Adapter<NewsCategoryAdapte
             @Override
             public void onClick(View view) {
                 Common.categoryClass = category;
-                if(!isSelectedAnyThing()){
-                    SubcategoryClass first = category.getSubcategories().get(0);
-                    first.setSelected(true);
-                    first.save();
-                }
                 Intent i = new Intent(context, NewsActivity.class);
                 context.startActivity(i);
             }
         });
 
-    }
-
-    private boolean isSelectedAnyThing(){
-        for(SubcategoryClass subcategory : Common.categoryClass.getSubcategories())
-            if(subcategory.isSelected())
-                return true;
-        return false;
     }
 
 

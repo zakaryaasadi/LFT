@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#a40000</color>
+    <color name="colorPrimary">#a40000</color> //accad #0288D1  lft #a40000
     <color name="colorPrimaryDark">#a40000</color>
     <color name="colorAccent">#a40000</color>
     <color name="white">#ffffff</color>
     <color name="blackTextColor">#0d0d0d</color>
     <color name="gretTxtColor">#94aab5</color>
-    <color name="redBg">#cd1214</color>
+    <color name="redBg">#cd1214</color>  //accad #03A9F4  lft #cd1214
     <color name="orange">#fa8e00</color>
     <color name="red">#cd1214</color>
-    <color name="tabtxt_color">#f09f9f</color>
+    <color name="tabtxt_color">#f09f9f</color> //accad #BBDEFB  lft #f09f9f
     <color name="transparent">#00000000</color>
     <color name="ViewLineColor">#dedede</color>
     <color name="hintcolor">#a0a09e</color>

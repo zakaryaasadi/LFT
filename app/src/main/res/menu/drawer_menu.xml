@@ -9,37 +9,42 @@
             android:icon="@drawable/newspaper"
             android:title="Explore" />
         <item
+            android:id="@+id/nav_voting"
+            android:icon="@drawable/sub_cats"
+            android:title="Voting" />
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_event"
+            android:title="Events" />
+        <item
             android:id="@+id/nav_private"
             android:icon="@drawable/team"
             android:title="Private" />
 
         <item
             android:id="@+id/nav_add_news"
-            android:icon="@drawable/newspaper_active"
+            android:icon="@drawable/ic_add_news"
             android:title="Add news" />
     </group>
 
     <item android:title="More Sections">
         <menu>
-            <item
-                android:id="@+id/nav_subcategories"
-                android:icon="@drawable/sub_cats"
-                android:title="Subcategories" />
+
             <item
                 android:id="@+id/nav_add_homework"
                 android:icon="@drawable/homework"
-                android:visible="false"
-                android:title="Add Homework" />
+                android:title="Add Homework"
+                android:visible="false" />
             <item
                 android:id="@+id/nav_homework"
                 android:icon="@drawable/homework"
-                android:visible="false"
-                android:title="Homework" />
+                android:title="Homework"
+                android:visible="false" />
             <item
                 android:id="@+id/nav_document"
                 android:icon="@drawable/ic_document"
-                android:visible="false"
-                android:title="Document" />
+                android:title="Document"
+                android:visible="false" />
             <item
                 android:id="@+id/nav_exam"
                 android:icon="@drawable/subject"

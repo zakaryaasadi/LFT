@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -15,12 +14,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import Controller.CustomDate;
-import Models.EventClass;
+import Utils.CustomDate;
 import Models.NoteClass;
 import Models.UserClass;
-import shahbasoft.lft.NewsDetailActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> {
 

@@ -26,11 +26,10 @@ import Controller.Api;
 import Controller.DataFromApi;
 import Models.NewsClass;
 import Models.NewsResult;
-import Models.SubcategoryClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class GroupNewsFragment extends Fragment {
 
@@ -79,10 +78,8 @@ public class GroupNewsFragment extends Fragment {
     private void fetchDataFromApi() {
         api = DataFromApi.getApi();
         swipe.setRefreshing(true);
-        if (Common.getUser() != null)
-            for (final SubcategoryClass item : Common.categoryClass.getSubcategories())
-                if (item.isSelected()) {
-                    Call<NewsResult> call = api.GroupNews(item.getId(), Common.getUser().id);
+        if (Common.getUser() != null){
+                    Call<NewsResult> call = api.GroupNews(Common.categoryClass.getId(), Common.getUser().id);
 
                     call.enqueue(new Callback<NewsResult>() {
                         @Override
@@ -92,14 +89,14 @@ public class GroupNewsFragment extends Fragment {
                             newsList.addAll(news.results);
                             bAdapter.notifyDataSetChanged();
                             runLayoutAnimation();
-                            saveToDb(item.getId());
+                            saveToDb();
                         }
 
 
                         @Override
                         public void onFailure(Call<NewsResult> call, Throwable t) {
                             swipe.setRefreshing(false);
-                            fetchDataFromDb(item.getId());
+                            fetchDataFromDb();
                             bAdapter.notifyDataSetChanged();
                             runLayoutAnimation();
                             Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -108,15 +105,15 @@ public class GroupNewsFragment extends Fragment {
                 }
     }
 
-    private void fetchDataFromDb(long subcategoryId) {
-        List<NewsClass> fromDb = SugarRecord.find(NewsClass.class, "PRIVATE_NEWS_TYPE = 1 and SUBCATEGORY_FK = ?", new String[]{String.valueOf(subcategoryId)}, null, "CREATION_DATE desc", null);
+    private void fetchDataFromDb() {
+        List<NewsClass> fromDb = SugarRecord.find(NewsClass.class, "PRIVATE_NEWS_TYPE = 1 and SUBCATEGORY_FK = ?", new String[]{String.valueOf(Common.categoryClass.getId())}, null, "CREATION_DATE desc", null);
         if (fromDb.size() > 0) {
             newsList.addAll(fromDb);
         }
     }
 
-    private void saveToDb(long subcategoryId) {
-        SugarRecord.deleteAll(NewsClass.class, "PRIVATE_NEWS_TYPE = 1 and SUBCATEGORY_FK = ?",String.valueOf(subcategoryId));
+    private void saveToDb() {
+        SugarRecord.deleteAll(NewsClass.class, "PRIVATE_NEWS_TYPE = 1 and SUBCATEGORY_FK = ?",String.valueOf(Common.categoryClass.getId()));
         for (NewsClass item : newsList)
             item.save();
     }

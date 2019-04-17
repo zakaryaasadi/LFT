@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -15,11 +14,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import Models.NoteStudentClass;
 import Models.StudentClass;
 import Models.UserClass;
-import shahbasoft.lft.ExamSubjectsActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class ExamTeacherStudentAdapter extends RecyclerView.Adapter<ExamTeacherStudentAdapter.MyViewHolder> {
 

@@ -1,7 +1,6 @@
 package Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -18,18 +17,12 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import Controller.Common;
-import Models.MessageSentClass;
-import Models.NoteStudentClass;
 import Models.UserClass;
 import Models.UserMessageClass;
-import shahbasoft.lft.NoteActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class UserMessageAdapter extends RecyclerView.Adapter<UserMessageAdapter.MyViewHolder> {
 

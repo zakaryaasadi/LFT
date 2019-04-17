@@ -21,8 +21,8 @@ import Models.UserResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.ConfirmAccountActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.ConfirmAccountActivity;
+import com.shahbaapp.lft.R;
 
 public class AccountActivity extends Fragment {
 

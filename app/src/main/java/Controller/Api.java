@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.Date;
-import java.util.List;
 
 import Models.AddMessage;
 import Models.CategoryResult;
@@ -24,6 +23,7 @@ import Models.NewsResult;
 import Models.NoteResult;
 import Models.NoteStudentResult;
 import Models.Result;
+import Models.SubcategoryResult;
 import Models.UserResult;
 import Models.UsersResult;
 import Models.VotingResult;
@@ -67,13 +67,13 @@ public interface Api {
     Call<CategoryResult> NewsCategory();
 
     @GET("news/group?school_id=" + schoolId)
-    Call<NewsResult> GroupNews(@Query("sub_cat_id") long subCatId, @Query("user_id") long userId);
+    Call<NewsResult> GroupNews(@Query("cat_id") long catId, @Query("user_id") long userId);
 
     @GET("news/class?school_id=" + schoolId)
-    Call<NewsResult> ClassNews(@Query("sub_cat_id") long subCatId, @Query("user_id") long userId);
+    Call<NewsResult> ClassNews(@Query("cat_id") long catId, @Query("user_id") long userId);
 
     @GET("news/subject?school_id=" + schoolId)
-    Call<NewsResult> SubjectNews(@Query("sub_cat_id") long subCatId, @Query("user_id") long userId);
+    Call<NewsResult> SubjectNews(@Query("cat_id") long catId, @Query("user_id") long userId);
 
     @POST("news/add?school_id=" + schoolId)
     Call<NewsResult> AddNews(@Body NewsClass news);
@@ -92,6 +92,10 @@ public interface Api {
 
     @GET("user/getsubjects")
     Call<ClassSubjectResult> GetSubjects(@Query("user_id") long userId);
+
+
+    @GET("news/GetPermission")
+    Call<SubcategoryResult> GetPermission(@Query("cat_id") long catId, @Query("user_id") long userId);
 
     @POST("user/update")
     Call<UserResult> Update(@Query("user_id") long userId, @Query("full_name") String fullName, @Body String image);

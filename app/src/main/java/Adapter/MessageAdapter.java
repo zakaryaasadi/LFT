@@ -20,15 +20,15 @@ import java.util.List;
 
 import Controller.Api;
 import Controller.Common;
-import Controller.CustomDate;
+import Utils.CustomDate;
 import Controller.DataFromApi;
 import Models.MessageClass;
 import Models.Result;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.MessageDetailActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.MessageDetailActivity;
+import com.shahbaapp.lft.R;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder>{
 

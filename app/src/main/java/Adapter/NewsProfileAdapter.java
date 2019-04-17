@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import Controller.CustomDate;
+import Utils.CustomDate;
 import Models.NewsClass;
-import shahbasoft.lft.NewsDetailActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.NewsDetailActivity;
+import com.shahbaapp.lft.R;
 
 
 public class NewsProfileAdapter extends RecyclerView.Adapter<NewsProfileAdapter.MyViewHolder> {

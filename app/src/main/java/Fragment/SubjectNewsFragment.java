@@ -14,23 +14,19 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
-
 import com.orm.SugarRecord;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Adapter.NewsRecycleAdapter;
 import Controller.Common;
 import Controller.Api;
 import Controller.DataFromApi;
 import Models.NewsClass;
 import Models.NewsResult;
-import Models.SubcategoryClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class SubjectNewsFragment extends Fragment {
 
@@ -79,44 +75,42 @@ public class SubjectNewsFragment extends Fragment {
     private void fetchDataFromApi() {
         api = DataFromApi.getApi();
         swipe.setRefreshing(true);
-        if (Common.getUser() != null)
-            for (final SubcategoryClass item : Common.categoryClass.getSubcategories())
-                if (item.isSelected()) {
-                    Call<NewsResult> call = api.SubjectNews(item.getId(), Common.getUser().id);
+        if (Common.getUser() != null) {
+            Call<NewsResult> call = api.SubjectNews(Common.categoryClass.getId(), Common.getUser().id);
 
-                    call.enqueue(new Callback<NewsResult>() {
-                        @Override
-                        public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
-                            swipe.setRefreshing(false);
-                            NewsResult news = response.body();
-                            newsList.addAll(news.results);
-                            bAdapter.notifyDataSetChanged();
-                            runLayoutAnimation();
-                            saveToDb(item.getId());
-                        }
-
-
-                        @Override
-                        public void onFailure(Call<NewsResult> call, Throwable t) {
-                            swipe.setRefreshing(false);
-                            fetchDataFromDb(item.getId());
-                            bAdapter.notifyDataSetChanged();
-                            runLayoutAnimation();
-                            Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            call.enqueue(new Callback<NewsResult>() {
+                @Override
+                public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
+                    swipe.setRefreshing(false);
+                    NewsResult news = response.body();
+                    newsList.addAll(news.results);
+                    bAdapter.notifyDataSetChanged();
+                    runLayoutAnimation();
+                    saveToDb();
                 }
+
+
+                @Override
+                public void onFailure(Call<NewsResult> call, Throwable t) {
+                    swipe.setRefreshing(false);
+                    fetchDataFromDb();
+                    bAdapter.notifyDataSetChanged();
+                    runLayoutAnimation();
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
-    private void fetchDataFromDb(long id) {
-        List<NewsClass> fromDb = SugarRecord.find(NewsClass.class, "PRIVATE_NEWS_TYPE = 3 and SUBCATEGORY = ?", new String[]{String.valueOf(id)}, null, "CREATION_DATE desc", null);
-        if(fromDb.size() > 0){
+    private void fetchDataFromDb() {
+        List<NewsClass> fromDb = SugarRecord.find(NewsClass.class, "PRIVATE_NEWS_TYPE = 3 and SUBCATEGORY = ?", new String[]{String.valueOf(Common.categoryClass.getId())}, null, "CREATION_DATE desc", null);
+        if (fromDb.size() > 0) {
             newsList.addAll(fromDb);
         }
     }
 
-    private void saveToDb(long subcategoryId) {
-        SugarRecord.deleteAll(NewsClass.class, "PRIVATE_NEWS_TYPE = 3 and SUBCATEGORY_FK = ?",String.valueOf(subcategoryId));
+    private void saveToDb() {
+        SugarRecord.deleteAll(NewsClass.class, "PRIVATE_NEWS_TYPE = 3 and SUBCATEGORY_FK = ?", String.valueOf(Common.categoryClass.getId()));
         for (NewsClass item : newsList)
             item.save();
     }

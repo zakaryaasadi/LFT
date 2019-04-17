@@ -50,7 +50,7 @@
             android:layout_marginLeft="6dp"
             android:padding="10dp"
             android:text="Flora"
-            android:textColor="#0d0d0d"
+            android:textColor="@color/white"
             android:textSize="13.3dp" />
 
         <TextView

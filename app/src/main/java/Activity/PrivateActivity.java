@@ -10,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import Adapter.CategoryPagerAdapterExplor;
 import Adapter.CategoryPagerAdapterPrivate;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 import xyz.santeri.wvp.WrappingViewPager;
 
 

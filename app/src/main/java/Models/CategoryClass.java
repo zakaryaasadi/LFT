@@ -27,21 +27,17 @@ public class CategoryClass{
         this.subcategories = subcategories;
     }
 
-    private SubcategoryClass updateSubcategory(SubcategoryClass subcategory){
-        SubcategoryClass subcategoryDb = SugarRecord.findById(SubcategoryClass.class, subcategory.getId());
-        if(subcategoryDb != null)
-            subcategory.setSelected(subcategoryDb.isSelected());
-        subcategory.save();
-        return subcategory;
-    }
+
 
     public void delete(){
         SugarRecord.delete(this);
     }
 
     public void save(){
-        for(SubcategoryClass subcategory : subcategories)
-            subcategories.set(subcategories.indexOf(subcategory),updateSubcategory(subcategory));
+        for(SubcategoryClass ite : subcategories){
+            ite.setCategoryId(id);
+            SugarRecord.save(ite);
+        }
         SugarRecord.save(this);
     }
 

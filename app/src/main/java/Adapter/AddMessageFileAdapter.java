@@ -1,7 +1,9 @@
 package Adapter;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import Models.AttachmentClass;
 import Utils.FileProcessing;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class AddMessageFileAdapter extends RecyclerView.Adapter<AddMessageFileAdapter.MyViewHolder> {
 
@@ -63,9 +65,10 @@ public class AddMessageFileAdapter extends RecyclerView.Adapter<AddMessageFileAd
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                FileProcessing.openFileDialog(context, file.path);
+                FileProcessing.openFileDialog(file.path);
             }
         });
 

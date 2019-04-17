@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import Utils.ImageProcessing;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class DetailImageAdapter extends RecyclerView.Adapter<DetailImageAdapter.MyViewHolder> {
 

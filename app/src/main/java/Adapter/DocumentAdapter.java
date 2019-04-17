@@ -12,8 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import Models.DocumentClass;
-import shahbasoft.lft.AddDocumentActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.AddDocumentActivity;
+import com.shahbaapp.lft.R;
 
 public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.MyViewHolder>{
 

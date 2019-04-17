@@ -1,3 +1,4 @@
+
 package Activity;
 
 import android.graphics.Typeface;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import Adapter.CategoryPagerAdapterExplor;
-import shahbasoft.lft.R;
+import Controller.Common;
+import Models.SubcategoryClass;
+import com.shahbaapp.lft.R;
 import xyz.santeri.wvp.WrappingViewPager;
 
 
@@ -23,17 +26,19 @@ public class ExploreActivity extends Fragment {
     private WrappingViewPager wrappingViewPager;
 
     View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.activity_explore,container,false);
+        view = inflater.inflate(R.layout.activity_explore, container, false);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
 
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
-        tabLayout.addTab(tabLayout.newTab().setText("WHAT'S NEW"));
-        tabLayout.addTab(tabLayout.newTab().setText("VOTING"));
-        tabLayout.addTab(tabLayout.newTab().setText("EVENTS"));
+        for(SubcategoryClass item : Common.categoryClass.getSubcategories()){
+            tabLayout.addTab(tabLayout.newTab().setText(item.getTitle().toUpperCase()));
+        }
+
+
         Typeface mTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -54,7 +59,7 @@ public class ExploreActivity extends Fragment {
 
 
         wrappingViewPager = (WrappingViewPager) view.findViewById(R.id.pager);
-        CategoryPagerAdapterExplor adapter = new CategoryPagerAdapterExplor(getActivity().getSupportFragmentManager(), 3);
+        CategoryPagerAdapterExplor adapter = new CategoryPagerAdapterExplor(getActivity().getSupportFragmentManager(), Common.categoryClass.getSubcategories().size());
         wrappingViewPager.setAdapter(adapter);
         wrappingViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -72,7 +77,6 @@ public class ExploreActivity extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
 
 
         return view;

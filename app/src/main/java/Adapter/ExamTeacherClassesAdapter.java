@@ -14,10 +14,8 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import Models.ClassSubjectClass;
-import shahbasoft.lft.ExamTeacherStudentActivity;
-import shahbasoft.lft.ExamTeacherSubjectsActivity;
-import shahbasoft.lft.MarksActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.ExamTeacherSubjectsActivity;
+import com.shahbaapp.lft.R;
 
 public class ExamTeacherClassesAdapter extends RecyclerView.Adapter<ExamTeacherClassesAdapter.MyViewHolder> {
 

@@ -12,12 +12,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import Controller.CustomDate;
+import Utils.CustomDate;
 import Models.MessageSentClass;
 import Models.UserClass;
 import Utils.ImageProcessing;
-import shahbasoft.lft.MessageDetailSentActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.MessageDetailSentActivity;
+import com.shahbaapp.lft.R;
 
 public class MessageSentAdapter extends RecyclerView.Adapter<MessageSentAdapter.MyViewHolder> {
 

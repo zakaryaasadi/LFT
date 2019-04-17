@@ -12,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import Adapter.CategoryPagerAdapterPrivate;
 import Adapter.MessagePagerAdapter;
-import Controller.Common;
-import shahbasoft.lft.R;
-import shahbasoft.lft.UserMessageActivity;
+import com.shahbaapp.lft.R;
+import com.shahbaapp.lft.UserMessageActivity;
 import xyz.santeri.wvp.WrappingViewPager;
 
 

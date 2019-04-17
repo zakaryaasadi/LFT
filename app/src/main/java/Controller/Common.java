@@ -1,13 +1,10 @@
 package Controller;
 
-import android.content.pm.ApplicationInfo;
 import android.graphics.Point;
-import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Display;
 
 import com.orm.SugarRecord;
-import com.snatik.storage.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,6 @@ import Models.ClassSubjectClass;
 import Models.DocumentClass;
 import Models.UserClass;
 import Models.UserMessageClass;
-import shahbasoft.lft.AppLauncher;
 
 public class Common {
     public static CategoryClass categoryClass;

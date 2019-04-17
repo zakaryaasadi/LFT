@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +26,7 @@ import Adapter.MessageSentAdapter;
 import Controller.Api;
 import Controller.Common;
 import Controller.DataFromApi;
-import Controller.EndlessRecyclerViewScrollListener;
+import Utils.EndlessRecyclerViewScrollListener;
 
 import Models.MessageSentClass;
 import Models.MessageSentResult;
@@ -35,7 +34,7 @@ import Models.UserMessageClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class MessageSentFragment extends Fragment {
 

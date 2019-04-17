@@ -2,15 +2,11 @@ package Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,14 +14,10 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import Controller.CustomDate;
 import Models.ExamClass;
 import Models.ExamSubjectClass;
-import Models.SubjectClass;
-import Models.UserClass;
-import shahbasoft.lft.ExamSubjectsActivity;
-import shahbasoft.lft.MarksActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.MarksActivity;
+import com.shahbaapp.lft.R;
 
 public class ExamSubjectsAdapter extends RecyclerView.Adapter<ExamSubjectsAdapter.MyViewHolder> {
 

@@ -13,34 +13,42 @@ import android.widget.TextView;
 import java.util.List;
 
 import Models.SubcategoryClass;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
-public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.MyViewHolder>{
+public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.MyViewHolder> {
 
+    private final float heighScreen;
     Context context;
 
 
     private List<SubcategoryClass> OfferList;
+    private onSelectItemListener mOnSelectItem;
+    private LinearLayout preSubCat;
+
+
+    public interface onSelectItemListener {
+        public void onSelectItem(long subcategoryId);
+    }
+
+    public void setOnSelectItem(onSelectItemListener onSelectItem) {
+        mOnSelectItem = onSelectItem;
+    }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-
-        TextView txt;
-        ImageView tick;
-        LinearLayout linearLayout;
+        ImageView image;
+        TextView title;
+        LinearLayout subCat;
 
         public MyViewHolder(View view) {
             super(view);
 
-            txt=(TextView)view.findViewById(R.id.txt);
 
-
-            tick=(ImageView)view.findViewById(R.id.tick);
-            linearLayout=(LinearLayout) view.findViewById(R.id.linear);
-
-
+            image = (ImageView) view.findViewById(R.id.image);
+            title = (TextView) view.findViewById(R.id.title);
+            subCat = view.findViewById(R.id.sub_cats);
         }
 
     }
@@ -49,6 +57,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
     public SubCategoryAdapter(Context context, List<SubcategoryClass> offerList) {
         this.OfferList = offerList;
         this.context = context;
+        heighScreen = context.getResources().getDisplayMetrics().density;
     }
 
     @Override
@@ -63,38 +72,20 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        final SubcategoryClass subcategory = OfferList.get(position);
-        holder.txt.setText(subcategory.getTitle());
-
-        if(subcategory.isSelected()){
-            holder.tick.setVisibility(View.VISIBLE);
-            holder.linearLayout.setVisibility(View.VISIBLE);
-        }
-
+    public void onBindViewHolder(@NonNull SubCategoryAdapter.MyViewHolder holder, int position) {
+        final SubcategoryClass sub = OfferList.get(position);
+        holder.title.setText(sub.getTitle());
+        final LinearLayout subCat = holder.subCat;
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
-                if (subcategory.isSelected()){
-                    subcategory.setSelected(false);
-
-                    holder.tick.setVisibility(View.GONE);
-                    holder.linearLayout.setVisibility(View.GONE);
-
-                }else {
-                    subcategory.setSelected(true);
-                    holder.tick.setVisibility(View.VISIBLE);
-                    holder.linearLayout.setVisibility(View.VISIBLE);
-                }
-
-                subcategory.save();
-
+            public void onClick(View v) {
+                returnDefaultToTextView(subCat);
+                subCat.setPadding(0, (int) (5 * heighScreen), 0, 0);
+                mOnSelectItem.onSelectItem(sub.getId());
             }
         });
     }
-
 
 
     @Override
@@ -103,6 +94,18 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
 
     }
 
+    private void returnDefaultToTextView(LinearLayout subCat) {
+
+        if (preSubCat == null){
+            preSubCat = subCat;
+            return;
+        }
+
+        preSubCat.setPadding(0, (int) (15 * heighScreen), 0, 0);
+        preSubCat = subCat;
+    }
+
 }
+
 
 

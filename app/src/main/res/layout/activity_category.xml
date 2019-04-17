@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewsCategoryActivity">
+    tools:context="com.shahbaapp.lft.com.shahbaapp.accad.NewsCategoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,6 +49,7 @@
             android:id="@+id/swipe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginLeft="13dp"
             android:layout_marginTop="35dp">
 
@@ -56,7 +57,10 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layoutAnimation="@anim/layout_animation_fall_down"/>
+                android:padding="8dp"
+                android:layout_marginStart="10dp"
+                android:layoutAnimation="@anim/layout_animation_fall_down"
+                android:layout_marginLeft="10dp" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

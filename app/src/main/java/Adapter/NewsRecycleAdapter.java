@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +12,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.snatik.storage.Storage;
+import com.google.gson.Gson;
 
 import java.util.List;
 
-import Controller.CustomDate;
+import Utils.CustomDate;
 import Models.NewsClass;
 import Utils.FileProcessing;
 import Utils.ImageProcessing;
-import shahbasoft.lft.NewsDetailActivity;
-import shahbasoft.lft.NewsProfileActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.NewsDetailActivity;
+import com.shahbaapp.lft.NewsProfileActivity;
+import com.shahbaapp.lft.R;
 
 
 public class NewsRecycleAdapter extends RecyclerView.Adapter<NewsRecycleAdapter.MyViewHolder> {
@@ -128,14 +127,7 @@ public class NewsRecycleAdapter extends RecyclerView.Adapter<NewsRecycleAdapter.
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, NewsDetailActivity.class);
-                i.putExtra("newsId", news.getId());
-                i.putExtra("personName",news.getPersonName());
-                i.putExtra("profileImage",news.getProfileImage());
-                i.putExtra("title",news.getTitle());
-                i.putExtra("date",CustomDate.format(news.getCreationDate()));
-                i.putExtra("body",news.getBody());
-                i.putExtra("newsImage",news.getNewsImage());
-                i.putExtra("sharable",news.getSharable());
+                i.putExtra("news", new Gson().toJson(news));
                 context.startActivity(i);
 
             }
@@ -148,9 +140,9 @@ public class NewsRecycleAdapter extends RecyclerView.Adapter<NewsRecycleAdapter.
                 if (!news.getSharable())
                     return;
                 if(news.getNewsImage() != null)
-                    FileProcessing.shareFile(context, saveImageInCache(news), news.getTitle(), news.getBody());
+                    FileProcessing.shareFile(FileProcessing.saveImageInCache(news.getNewsImage()), news.getTitle(), news.getBody());
                 else
-                    FileProcessing.shareFile(context, "", news.getTitle(), news.getBody());
+                    FileProcessing.shareFile("", news.getTitle(), news.getBody());
             }
         });
 
@@ -164,13 +156,7 @@ public class NewsRecycleAdapter extends RecyclerView.Adapter<NewsRecycleAdapter.
     }
 
 
-    private String saveImageInCache(NewsClass item) {
 
-        Storage storage = new Storage(context);
-        String path = storage.getInternalCacheDirectory() + "/image.jpg";
-        storage.createFile(path, Base64.decode(item.getNewsImage(), Base64.DEFAULT));
-        return path;
-    }
 
 }
 

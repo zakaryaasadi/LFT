@@ -1,12 +1,9 @@
 package Adapter;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +16,8 @@ import java.util.List;
 
 import Models.AttachmentClass;
 import Utils.FileProcessing;
-import shahbasoft.lft.AppLauncher;
-import shahbasoft.lft.MessageDetailActivity;
-import shahbasoft.lft.MessageDetailSentActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.AppLauncher;
+import com.shahbaapp.lft.R;
 
 public class MessageFileSentAdapter extends RecyclerView.Adapter<MessageFileSentAdapter.MyViewHolder> {
 
@@ -75,7 +70,7 @@ public class MessageFileSentAdapter extends RecyclerView.Adapter<MessageFileSent
                 String path = AppLauncher.DIR_FILES + File.separator + file.name;
                 File f = new File(path);
                 if (f.exists())
-                    FileProcessing.openFileDialog(context, path);
+                    FileProcessing.openFileDialog( path);
                 else
                     Toast.makeText(context, "File access failed", Toast.LENGTH_SHORT).show();
             }

@@ -17,8 +17,8 @@ import java.util.List;
 
 import Models.NoteStudentClass;
 import Models.UserClass;
-import shahbasoft.lft.NoteActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.NoteActivity;
+import com.shahbaapp.lft.R;
 
 public class NoteStudentAdapter extends RecyclerView.Adapter<NoteStudentAdapter.MyViewHolder> {
 

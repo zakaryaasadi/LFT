@@ -15,7 +15,7 @@ import java.util.List;
 
 import Models.DocAnswerClass;
 import Models.DocQuestionClass;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 
 public class DocumentChoiceRecycleAdapter extends RecyclerView.Adapter<DocumentChoiceRecycleAdapter.MyViewHolder> {

@@ -12,8 +12,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import Models.SubjectClass;
-import shahbasoft.lft.DocumentsActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.DocumentsActivity;
+import com.shahbaapp.lft.R;
 
 public class DocumentClassesSubjectsAdapter extends RecyclerView.Adapter<DocumentClassesSubjectsAdapter.MyViewHolder> {
 

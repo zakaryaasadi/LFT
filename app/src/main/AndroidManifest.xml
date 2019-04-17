@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="shahbasoft.lft">
+    package="com.shahbaapp.lft">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.wolfsoft.propertyui.permission.C2D_MESSAGE" />
@@ -94,7 +94,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="shahbasoft.lft.fileprovider"
+            android:authorities="com.shahbaapp.lft.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

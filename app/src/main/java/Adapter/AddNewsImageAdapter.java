@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import Utils.ImageProcessing;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.R;
 
 public class AddNewsImageAdapter extends RecyclerView.Adapter<AddNewsImageAdapter.MyViewHolder> {
 

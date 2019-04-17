@@ -15,10 +15,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import Controller.CustomDate;
+import Utils.CustomDate;
 import Models.EventClass;
-import shahbasoft.lft.NewsDetailActivity;
-import shahbasoft.lft.R;
+import com.shahbaapp.lft.NewsDetailActivity;
+import com.shahbaapp.lft.R;
 
 public class EventsRecycleAdapter extends RecyclerView.Adapter<EventsRecycleAdapter.MyViewHolder> {
 
